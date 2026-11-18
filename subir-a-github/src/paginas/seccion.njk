@@ -1,0 +1,32 @@
+---
+layout: base.njk
+pagination:
+  data: site.categorias
+  size: 1
+  alias: cat
+permalink: "/seccion/{{ cat.slug }}/"
+eleventyExcludeFromCollections: true
+eleventyComputed:
+  title: "{{ cat.nombre }}"
+  descripcion: "{{ cat.nombre }} en Revista Digital Centro. {{ cat.descripcion }}"
+---
+{%- set lista = collections.notas | deCategoria(cat.nombre) %}
+<main class="interior-main">
+  <section class="listado">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker">Sección</span><h1 class="h-list">{{ cat.nombre }}</h1></div>
+        <p>{{ cat.descripcion }}</p>
+      </div>
+      <nav class="cats" aria-label="Secciones">
+        <a class="chip" href="/notas/">Todas</a>
+        {%- for c in site.categorias %}<a class="chip{% if c.slug == cat.slug %} activo{% endif %}" href="/seccion/{{ c.slug }}/">{{ c.nombre }}</a>{% endfor %}
+      </nav>
+      {%- if lista.length %}
+      <div class="ngrid">{% for n in lista %}{% include "tarjeta.njk" %}{% endfor %}</div>
+      {%- else %}
+      <p class="vacio">Todavía no hay notas en esta sección. Revisa <a href="/notas/">todas las notas</a>.</p>
+      {%- endif %}
+    </div>
+  </section>
+</main>

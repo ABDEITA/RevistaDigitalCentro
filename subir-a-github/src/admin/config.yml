@@ -1,0 +1,119 @@
+# Panel de publicación de Revista Digital Centro (Decap CMS)
+# Repositorio: github.com/ABDEITA/RevistaDigitalCentro
+backend:
+  name: github
+  repo: ABDEITA/RevistaDigitalCentro
+  branch: main
+  base_url: https://api.netlify.com
+  commit_messages:
+    create: "Nueva nota: {{slug}}"
+    update: "Actualiza nota: {{slug}}"
+    delete: "Borra nota: {{slug}}"
+    uploadMedia: "Sube imagen: {{path}}"
+    deleteMedia: "Borra imagen: {{path}}"
+
+# Solo funciona en tu computadora (localhost) para pruebas; en el sitio publicado se ignora.
+local_backend: true
+
+locale: es
+site_url: https://rdcentro.com
+display_url: https://rdcentro.com
+
+media_folder: src/img/notas
+public_folder: /img/notas
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: notas
+    label: Notas
+    label_singular: Nota
+    description: "Cada nota se publica en rdcentro.com/notas/ unos minutos después de guardarla."
+    folder: src/notas
+    create: true
+    slug: "{{slug}}"
+    preview_path: "notas/{{slug}}/"
+    summary: "{{title}} · {{categoria}} · {{date | date('DD/MM/YYYY')}}{{borrador | ternary(' · BORRADOR', '')}}"
+    sortable_fields: ["date", "title", "categoria"]
+    view_filters:
+      - { label: "Borradores", field: borrador, pattern: true }
+      - { label: "El cartón de la semana", field: categoria, pattern: "El cartón de la semana" }
+    view_groups:
+      - { label: "Sección", field: categoria }
+    fields:
+      - label: Título
+        name: title
+        widget: string
+        hint: "Claro y directo, como lo buscaría la gente en Google. Ideal: menos de 70 caracteres."
+      - label: Fecha de publicación
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DDTHH:mm:ssZ"
+        date_format: "DD/MM/YYYY"
+        time_format: "HH:mm"
+        picker_utc: false
+        default: "{{now}}"
+        hint: "Se llena sola con la fecha y hora actuales."
+      - label: Sección
+        name: categoria
+        widget: select
+        options: ["Noticias", "El cartón de la semana", "Entrevistas", "Opinión", "El programa"]
+        default: "Noticias"
+      - label: Resumen
+        name: resumen
+        widget: text
+        hint: "1 o 2 frases que expliquen la nota. Es lo que aparece en Google, en WhatsApp y en los asistentes de IA. Ideal: entre 120 y 160 caracteres."
+      - label: Imagen principal
+        name: imagen
+        widget: image
+        required: false
+        choose_url: false
+        hint: "JPG o PNG horizontal, de preferencia 1200 px de ancho y menos de 500 KB. Si no subes una, se usa la imagen de la revista."
+      - label: Descripción de la imagen
+        name: imagen_alt
+        widget: string
+        required: false
+        hint: "Qué se ve en la imagen, en pocas palabras. Ayuda a Google y a personas con discapacidad visual."
+      - label: Crédito de la imagen
+        name: imagen_credito
+        widget: string
+        required: false
+        hint: "Ej.: Foto: Studio69 Multimedia"
+      - label: Autor
+        name: autor
+        widget: string
+        default: "Redacción RD Centro"
+      - label: Liga a la publicación de Instagram
+        name: instagram
+        widget: string
+        required: false
+        hint: "Opcional. Pega la liga del post o reel original (https://www.instagram.com/p/...)."
+        pattern: ['^(https://(www\.)?instagram\.com/.+)?$', "Debe ser una liga de instagram.com"]
+      - label: Guardar como borrador (no se publica)
+        name: borrador
+        widget: boolean
+        default: false
+        required: false
+      - label: Texto de la nota
+        name: body
+        widget: markdown
+        hint: "Usa subtítulos (Encabezado 2) para separar partes de la nota."
+
+  - name: configuracion
+    label: Configuración del sitio
+    editor:
+      preview: false
+    files:
+      - name: ajustes
+        label: Feed de Instagram
+        file: src/_data/ajustes.json
+        fields:
+          - label: URL del feed JSON de Behold
+            name: beholdFeedUrl
+            widget: string
+            required: false
+            hint: "Empieza con https://feeds.behold.so/ — la sacas del panel de Behold (feed tipo JSON). Déjalo vacío para mostrar fotos de muestra."
+            pattern: ['^(https://feeds\.behold\.so/.+)?$', "Debe empezar con https://feeds.behold.so/"]

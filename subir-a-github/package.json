@@ -1,0 +1,17 @@
+{
+  "name": "rdcentro",
+  "version": "1.0.0",
+  "description": "Sitio de Revista Digital Centro (rdcentro.com)",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve",
+    "panel-local": "npx decap-server"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "3.1.8"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  }
+}

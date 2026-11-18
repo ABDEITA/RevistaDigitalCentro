@@ -1,0 +1,30 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{{ site.url }}/</loc>
+    <lastmod>{{ collections.notas | fechaMasReciente }}</lastmod>
+  </url>
+  <url>
+    <loc>{{ site.url }}/notas/</loc>
+    <lastmod>{{ collections.notas | fechaMasReciente }}</lastmod>
+  </url>
+{%- for c in site.categorias %}
+{%- set deEsta = collections.notas | deCategoria(c.nombre) %}
+{%- if deEsta.length %}
+  <url>
+    <loc>{{ site.url }}/seccion/{{ c.slug }}/</loc>
+    <lastmod>{{ deEsta | fechaMasReciente }}</lastmod>
+  </url>
+{%- endif %}
+{%- endfor %}
+{%- for n in collections.notas %}
+  <url>
+    <loc>{{ site.url }}{{ n.url }}</loc>
+    <lastmod>{{ (n.data.actualizado or n.date) | isoFecha }}</lastmod>
+  </url>
+{%- endfor %}
+</urlset>

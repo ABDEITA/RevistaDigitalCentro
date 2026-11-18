@@ -1,0 +1,36 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "NewsMediaOrganization",
+      "@id": "{{ site.url }}/#organizacion",
+      "name": "{{ site.nombre }}",
+      "alternateName": ["{{ site.corto }}", "Revista Digital Centro México"],
+      "url": "{{ site.url }}/",
+      "logo": { "@type": "ImageObject", "url": "{{ site.url }}{{ site.imagenDefault }}", "width": 1200, "height": 630 },
+      "slogan": "{{ site.lema }}",
+      "description": "Revista digital y programa de televisión mexicano transmitido por la señal de Xti-Tv. Noticias, entrevistas, opinión y el cartón de la semana.",
+      "telephone": "{{ site.telefono }}",
+      "inLanguage": "es-MX",
+      "areaServed": [
+        {"@type": "City", "name": "Ciudad de México"},
+        {"@type": "City", "name": "Cancún"},
+        {"@type": "City", "name": "Los Cabos"},
+        {"@type": "City", "name": "La Paz"},
+        {"@type": "City", "name": "Puerto Vallarta"}
+      ],
+      "sameAs": ["{{ site.facebook }}", "{{ site.instagram }}"],
+      "parentOrganization": {"@type": "Organization", "name": "{{ site.productora.nombre }}", "url": "{{ site.productora.url }}"}
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#sitio",
+      "url": "{{ site.url }}/",
+      "name": "{{ site.nombre }}",
+      "inLanguage": "es-MX",
+      "publisher": {"@id": "{{ site.url }}/#organizacion"}
+    }
+  ]
+}
+</script>

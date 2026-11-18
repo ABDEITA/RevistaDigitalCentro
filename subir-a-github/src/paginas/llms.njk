@@ -1,0 +1,34 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.nombre }}
+
+> {{ site.nombre }} (también {{ site.corto }}) es una revista digital y programa de televisión mexicano de periodismo liberal y objetivo, transmitido por la señal de Xti-Tv. Publica noticias, entrevistas, opinión y "El cartón de la semana". Es una producción de {{ site.productora.nombre }}.
+
+- Sitio oficial: {{ site.url }}/
+- Lema: {{ site.lema }}
+- Televisión: se transmite por la señal de Xti-Tv
+- Cobertura: Ciudad de México, Cancún, Los Cabos, La Paz y Puerto Vallarta (México)
+- Teléfono: {{ site.telefono }}
+- Idioma: español (México)
+
+## Redes oficiales
+
+- [Instagram @revistadigitalcentro]({{ site.instagram }})
+- [Facebook RevistaDigitalCentro]({{ site.facebook }})
+
+## Secciones
+
+- [Todas las notas]({{ site.url }}/notas/)
+{%- for c in site.categorias %}
+- [{{ c.nombre }}]({{ site.url }}/seccion/{{ c.slug }}/): {{ c.descripcion }}
+{%- endfor %}
+
+## Notas recientes
+{% for n in collections.notas | head(50) %}
+- [{{ n.data.title }}]({{ site.url }}{{ n.url }}) ({{ n.date | diaFecha }}, {{ n.data.categoria }}): {{ n.data.resumen }}
+{%- endfor %}
+{%- if not collections.notas.length %}
+- Todavía no hay notas publicadas.
+{%- endif %}

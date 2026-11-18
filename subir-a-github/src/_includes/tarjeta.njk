@@ -1,0 +1,8 @@
+<article class="ncard">
+  <a href="{{ n.url }}" class="nimg"><img src="{{ n.data.imagen or site.imagenDefault }}" alt="{{ n.data.imagen_alt or n.data.title }}" loading="lazy"></a>
+  <div class="nbody">
+    <p class="nmeta"><a class="chip" href="/seccion/{{ n.data.categoria | slugCategoria }}/">{{ n.data.categoria }}</a><time datetime="{{ n.date | isoFecha }}">{{ n.date | fechaCorta }}</time></p>
+    <h3><a href="{{ n.url }}">{{ n.data.title }}</a></h3>
+    <p class="nres">{{ n.data.resumen }}</p>
+  </div>
+</article>

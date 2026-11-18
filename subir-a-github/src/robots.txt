@@ -1,0 +1,46 @@
+# Revista Digital Centro — rdcentro.com
+# Todos los buscadores y asistentes de IA pueden leer el sitio.
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# Buscadores de IA (citan y enlazan el sitio en sus respuestas)
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /admin/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /admin/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /admin/
+
+# Rastreadores de entrenamiento de IA (ayudan a que los modelos conozcan la marca)
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+
+Sitemap: https://rdcentro.com/sitemap.xml

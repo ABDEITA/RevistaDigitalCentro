@@ -1,0 +1,43 @@
+{
+  "nombre": "Revista Digital Centro",
+  "corto": "RD Centro",
+  "url": "https://rdcentro.com",
+  "lema": "Periodismo Liberal y Objetivo",
+  "descripcion": "Revista Digital Centro (RD Centro): periodismo liberal y objetivo desde México. Programa de televisión por Xti-Tv, noticias, entrevistas y el cartón de la semana. Cobertura en CDMX, Cancún, Los Cabos, La Paz y Puerto Vallarta.",
+  "telefono": "+52 55 7866 0200",
+  "telefonoVisible": "55 7866 0200",
+  "instagram": "https://www.instagram.com/revistadigitalcentro/",
+  "facebook": "https://www.facebook.com/RevistaDigitalCentro",
+  "productora": {
+    "nombre": "Studio69 Multimedia",
+    "url": "https://69estudio.com"
+  },
+  "imagenDefault": "/img/og-image.png",
+  "categorias": [
+    {
+      "nombre": "Noticias",
+      "slug": "noticias",
+      "descripcion": "Los hechos que importan, con contexto y sin adjetivos de más."
+    },
+    {
+      "nombre": "El cartón de la semana",
+      "slug": "carton-de-la-semana",
+      "descripcion": "La semana resumida en un solo trazo."
+    },
+    {
+      "nombre": "Entrevistas",
+      "slug": "entrevistas",
+      "descripcion": "Conversaciones con quienes toman las decisiones y con quienes las viven."
+    },
+    {
+      "nombre": "Opinión",
+      "slug": "opinion",
+      "descripcion": "Análisis y columnas de opinión."
+    },
+    {
+      "nombre": "El programa",
+      "slug": "el-programa",
+      "descripcion": "Lo que pasó al aire en Revista Digital Centro por Xti-Tv."
+    }
+  ]
+}

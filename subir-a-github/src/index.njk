@@ -1,0 +1,166 @@
+---
+portada: true
+scriptPortada: true
+permalink: /
+eleventyExcludeFromCollections: true
+jsonld: |
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TVSeries",
+        "@id": "https://rdcentro.com/#programa",
+        "name": "Revista Digital Centro",
+        "inLanguage": "es-MX",
+        "description": "Programa de televisión de periodismo y actualidad transmitido por la señal de Xti-Tv.",
+        "productionCompany": {"@type": "Organization", "name": "Studio69 Multimedia", "url": "https://69estudio.com"},
+        "url": "https://rdcentro.com/"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://rdcentro.com/#preguntas",
+        "mainEntity": [
+          {"@type": "Question", "name": "¿Qué es Revista Digital Centro?", "acceptedAnswer": {"@type": "Answer", "text": "Revista Digital Centro (RD Centro) es una revista digital y programa de televisión mexicano de periodismo liberal y objetivo. Publica noticias, entrevistas, opinión y el cartón de la semana."}},
+          {"@type": "Question", "name": "¿Dónde se transmite Revista Digital Centro?", "acceptedAnswer": {"@type": "Answer", "text": "El programa se transmite por la señal de Xti-Tv. Sus contenidos también se publican en Instagram (@revistadigitalcentro) y Facebook (RevistaDigitalCentro)."}},
+          {"@type": "Question", "name": "¿Qué ciudades cubre Revista Digital Centro?", "acceptedAnswer": {"@type": "Answer", "text": "Ciudad de México, Cancún, Los Cabos, La Paz y Puerto Vallarta."}},
+          {"@type": "Question", "name": "¿Cómo contacto a Revista Digital Centro?", "acceptedAnswer": {"@type": "Answer", "text": "Por teléfono al 55 7866 0200, o por mensaje en Instagram (@revistadigitalcentro) y Facebook."}}
+        ]
+      }
+    ]
+  }
+  </script>
+layout: base.njk
+---
+<script>window.RDC_FEED = {{ ajustes.beholdFeedUrl | dump | safe }};</script>
+<main>
+<section class="hero" style="padding-bottom:56px">
+  <div class="bg"><img src="https://images.unsplash.com/photo-1601585144584-2a53183be14c?auto=format&fit=crop&w=2000&q=70" alt="Vista aérea nocturna de la Ciudad de México" fetchpriority="high"></div>
+  <div class="wrap" style="width:100%">
+    <span class="live"><i></i> Al aire por Xti-Tv</span>
+    <h1><span>Revista</span> <span class="y">Digital</span> <span>Centro</span></h1>
+    <div class="row">
+      <p>Periodismo liberal y objetivo. La actualidad de México contada sin rodeos, en pantalla y en redes.</p>
+      <div class="cta">
+        <a class="btn" href="#reciente">Ver lo más reciente</a>
+        <a class="btn ghost" href="https://www.facebook.com/RevistaDigitalCentro" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+    <!-- Portada automática: se llena sola con la publicación más reciente de Instagram -->
+    <a id="feat" class="feat" target="_blank" rel="noopener" hidden><img alt=""><div><b></b><span></span></div></a>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div>
+  <span>Periodismo liberal y objetivo</span><span>Ciudad de México</span><span>Cancún</span><span>Los Cabos</span><span>La Paz</span><span>Puerto Vallarta</span><span>El cartón de la semana</span><span>Xti-Tv</span>
+</div></div>
+
+{%- set ultimas = collections.notas | head(3) %}
+{%- if ultimas.length %}
+<section id="notas" class="notas-home">
+  <div class="wrap">
+    <div class="head rv">
+      <div><span class="kicker">Notas</span><h2>Lo último en <span class="serif">RD Centro</span></h2></div>
+      <p><a class="btn ghost" href="/notas/">Ver todas las notas →</a></p>
+    </div>
+    <div class="ngrid home rv">
+      {%- for n in ultimas %}{% include "tarjeta.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+<section id="reciente">
+  <div class="wrap">
+    <div class="head rv">
+      <div><span class="kicker">@revistadigitalcentro</span><h2>Lo más <span class="serif">reciente</span></h2></div>
+      <p>Nuestras publicaciones de Instagram, actualizadas automáticamente cada vez que subimos contenido.</p>
+    </div>
+    <div class="ig rv" id="ig" aria-live="polite"><noscript><p>Mira nuestras publicaciones más recientes en <a href="https://www.instagram.com/revistadigitalcentro/">Instagram @revistadigitalcentro</a>.</p></noscript></div>
+    <p style="margin-top:28px"><a class="btn ghost" href="https://www.instagram.com/revistadigitalcentro/" target="_blank" rel="noopener">Ver todo en Instagram →</a></p>
+  </div>
+</section>
+
+<section id="nosotros">
+  <div class="wrap">
+    <div class="rv">
+      <span class="kicker">Quiénes somos</span>
+      <h2>Revista Digital <span class="serif">Centro</span></h2>
+      <p class="about">Revista Digital Centro, también conocida como RD Centro, es una revista digital y programa de televisión mexicano que se transmite por la señal de Xti-Tv. Hacemos periodismo liberal y objetivo: noticias, entrevistas, opinión y el cartón de la semana, con cobertura en Ciudad de México, Cancún, Los Cabos, La Paz y Puerto Vallarta. Somos una producción de Studio69 Multimedia.</p>
+    </div>
+  </div>
+</section>
+
+<section id="secciones" class="alt">
+  <div class="wrap">
+    <div class="head rv">
+      <div><span class="kicker">Qué hacemos</span><h2>Nuestras <span class="serif">secciones</span></h2></div>
+    </div>
+    <div class="cards">
+      <article class="card wide rv">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1574304904744-2e6919c5a2a9?auto=format&fit=crop&w=1400&q=70" alt="Cámara de video profesional en un estudio">
+        <span class="n">01</span>
+        <div><span class="kicker">Televisión</span><h3>El programa</h3><p>Revista Digital Centro se transmite por la señal de Xti-Tv, el canal nacional con arraigo local.</p></div>
+      </article>
+      <article class="card rv">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=900&q=70" alt="Máquina de escribir antigua">
+        <span class="n">02</span>
+        <div><span class="kicker">Humor político</span><h3>El cartón de la semana</h3><p>La semana resumida en un solo trazo.</p></div>
+      </article>
+      <article class="card rv">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=900&q=70" alt="Periódico doblado con la sección de negocios">
+        <span class="n">03</span>
+        <div><span class="kicker">Actualidad</span><h3>Noticias</h3><p>Los hechos que importan, con contexto y sin adjetivos de más.</p></div>
+      </article>
+      <article class="card wide rv">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1710360683896-e0506fb3579a?auto=format&fit=crop&w=1400&q=70" alt="Micrófono de estudio en penumbra">
+        <span class="n">04</span>
+        <div><span class="kicker">Voces</span><h3>Entrevistas y opinión</h3><p>Conversaciones con quienes toman las decisiones y con quienes las viven.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="cobertura">
+  <div class="wrap cov">
+    <div class="pic rv"><img loading="lazy" src="https://images.unsplash.com/photo-1547686669-9a8cb1a22d91?auto=format&fit=crop&w=1100&q=70" alt="Vista aérea del Palacio de Bellas Artes en la Ciudad de México"></div>
+    <div class="rv">
+      <span class="kicker">Cobertura</span>
+      <h2>Del centro <span class="serif">a las costas</span></h2>
+      <ul class="cities">
+        <li>Ciudad de México <small>Centro</small></li>
+        <li>Cancún <small>Quintana Roo</small></li>
+        <li>Los Cabos <small>Baja California Sur</small></li>
+        <li>La Paz <small>Baja California Sur</small></li>
+        <li>Puerto Vallarta <small>Jalisco</small></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="preguntas">
+  <div class="wrap">
+    <div class="head rv"><div><span class="kicker">Preguntas frecuentes</span><h2>Lo que nos <span class="serif">preguntan</span></h2></div></div>
+    <div class="faq rv">
+      <details open><summary>¿Qué es Revista Digital Centro?</summary><p>Revista Digital Centro (RD Centro) es una revista digital y programa de televisión mexicano de periodismo liberal y objetivo. Publica noticias, entrevistas, opinión y el cartón de la semana.</p></details>
+      <details><summary>¿Dónde se transmite?</summary><p>El programa se transmite por la señal de Xti-Tv. Sus contenidos también se publican en Instagram (@revistadigitalcentro) y Facebook (RevistaDigitalCentro).</p></details>
+      <details><summary>¿Qué ciudades cubren?</summary><p>Ciudad de México, Cancún, Los Cabos, La Paz y Puerto Vallarta.</p></details>
+      <details><summary>¿Cómo los contacto?</summary><p>Por teléfono al 55 7866 0200, o por mensaje en Instagram (@revistadigitalcentro) y Facebook.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="contact">
+  <div class="bg"><img loading="lazy" src="https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?auto=format&fit=crop&w=1800&q=60" alt=""></div>
+  <div class="wrap rv">
+    <span class="kicker">Contacto</span>
+    <h2>¿Tienes una <span class="serif">historia?</span></h2>
+    <div class="cta">
+      <a class="btn" href="tel:+525578660200">Llámanos · 55 7866 0200</a>
+      <a class="btn ghost" href="https://www.instagram.com/revistadigitalcentro/" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn ghost" href="https://www.facebook.com/RevistaDigitalCentro" target="_blank" rel="noopener">Facebook</a>
+    </div>
+    <p class="meta">Una producción de <a href="https://69estudio.com" target="_blank" rel="noopener">Studio69 Multimedia</a>. Think up!</p>
+  </div>
+</section>
+</main>

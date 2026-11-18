@@ -1,0 +1,86 @@
+---
+layout: base.njk
+---
+{%- set urlNota = site.url + page.url %}
+{%- set imgNota = site.url + (imagen or site.imagenDefault) %}
+{%- set catSlug = categoria | slugCategoria %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "NewsArticle",
+      "@id": "{{ urlNota }}#nota",
+      "mainEntityOfPage": "{{ urlNota }}",
+      "headline": {{ title | json | safe }},
+      "description": {{ resumen | json | safe }},
+      "image": ["{{ imgNota }}"],
+      "datePublished": "{{ page.date | isoFecha }}",
+      "dateModified": "{{ (actualizado or page.date) | isoFecha }}",
+      "articleSection": {{ categoria | json | safe }},
+      "inLanguage": "es-MX",
+      "author": {{ ({ "@type": ("Organization" if autor == "Redacción RD Centro" else "Person"), "name": autor }) | json | safe }},
+      "publisher": { "@id": "{{ site.url }}/#organizacion" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "{{ site.url }}/" },
+        { "@type": "ListItem", "position": 2, "name": "Notas", "item": "{{ site.url }}/notas/" },
+        { "@type": "ListItem", "position": 3, "name": {{ categoria | json | safe }}, "item": "{{ site.url }}/seccion/{{ catSlug }}/" },
+        { "@type": "ListItem", "position": 4, "name": {{ title | json | safe }}, "item": "{{ urlNota }}" }
+      ]
+    }
+  ]
+}
+</script>
+<main class="interior-main">
+<article class="nota">
+  <header class="nota-head wrap">
+    <nav class="migas" aria-label="Ruta"><a href="/">Inicio</a> / <a href="/notas/">Notas</a> / <a href="/seccion/{{ catSlug }}/">{{ categoria }}</a></nav>
+    <a class="chip" href="/seccion/{{ catSlug }}/">{{ categoria }}</a>
+    <h1>{{ title }}</h1>
+    <p class="nota-resumen">{{ resumen }}</p>
+    <p class="nota-meta">
+      <span>Por {{ autor }}</span>
+      <time datetime="{{ page.date | isoFecha }}">{{ page.date | fechaLarga }}</time>
+      <span>{{ content | minutosLectura }} min de lectura</span>
+    </p>
+  </header>
+  {%- if imagen %}
+  <figure class="nota-fig wrap">
+    <img src="{{ imagen }}" alt="{{ imagen_alt or title }}" fetchpriority="high">
+    {%- if imagen_credito %}<figcaption>{{ imagen_credito }}</figcaption>{% endif %}
+  </figure>
+  {%- endif %}
+  <div class="prosa wrap">
+    {{ content | safe }}
+    {%- if instagram %}
+    <p class="nota-ig"><a class="btn" href="{{ instagram }}" target="_blank" rel="noopener">Ver la publicación en Instagram →</a></p>
+    {%- endif %}
+    <div class="compartir">
+      <span>Compartir:</span>
+      <a href="https://wa.me/?text={{ (title + ' ' + urlNota) | urlEncode }}" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlNota | urlEncode }}" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://x.com/intent/post?url={{ urlNota | urlEncode }}&text={{ title | urlEncode }}" target="_blank" rel="noopener">X</a>
+      <button type="button" class="copiar" data-url="{{ urlNota }}">Copiar liga</button>
+    </div>
+  </div>
+</article>
+
+{%- set rel = collections.notas | relacionadas(page.url, categoria) %}
+{%- if rel.length %}
+<section class="relacionadas">
+  <div class="wrap">
+    <h2>Más de <span class="serif">{{ categoria }}</span></h2>
+    <div class="ngrid">{% for n in rel %}{% include "tarjeta.njk" %}{% endfor %}</div>
+  </div>
+</section>
+{%- endif %}
+</main>
+<script>
+document.querySelectorAll(".copiar").forEach(b => b.addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(b.dataset.url); b.textContent = "¡Copiada!"; }
+  catch (e) { b.textContent = b.dataset.url; }
+}));
+</script>

@@ -1,7 +1,7 @@
 ---
 title: "¡Experiencia que transforma, visión que trasciende! "
 date: 2026-11-19T16:19:00-06:00
-categoria: Noticias
+categoria: Opinión
 resumen: >
   Estudiar en el Politécnico debe ser una experiencia inolvidable, segura y
   justa para todas y todos.

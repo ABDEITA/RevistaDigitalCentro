@@ -1,8 +1,10 @@
 ---
-title: GTA 6 es abrumador. 99 de 100
+title: GTA 6 es abrumador.
 date: 2026-11-19T10:53:00-06:00
 categoria: Noticias
-resumen: "Rockstar lo ha vuelto a hacer. "
+resumen: |-
+  Rockstar lo ha vuelto a hacer. 
+  Calificacion 99 de 100 entre los usuarios hoy dia de su lanzamiento.
 imagen: /img/notas/images.jpg
 imagen_alt: "GTA 6 "
 autor: Redacción RD Centro

@@ -2,9 +2,11 @@
 title: "Bienvenidos a rdcentro.com: estrenamos sección de notas"
 date: 2026-11-17T12:00:00-06:00
 categoria: Noticias
-resumen: "Revista Digital Centro estrena su sección de notas en rdcentro.com: noticias, entrevistas, opinión y el cartón de la semana, ahora también en nuestro sitio."
-imagen: /img/og-image.png
-imagen_alt: "Revista Digital Centro. Periodismo liberal y objetivo."
+resumen: "Revista Digital Centro estrena su sección de notas en rdcentro.com:
+  noticias, entrevistas, opinión y el cartón de la semana, ahora también en
+  nuestro sitio."
+imagen: /img/notas/the_album_cover_art_landscape.jpg
+imagen_alt: Revista Digital Centro. Periodismo liberal y objetivo.
 autor: Redacción RD Centro
 ---
 

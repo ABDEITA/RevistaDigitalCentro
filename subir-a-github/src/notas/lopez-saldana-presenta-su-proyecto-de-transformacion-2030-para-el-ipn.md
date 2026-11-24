@@ -7,7 +7,7 @@ resumen: 'El Dr. Rolando de Jesús López Saldaña, aspirante a la Dirección
   Visión Institucional: Proyecto de Transformación 2030" (noviembre de 2026),
   con el que propone colocar al IPN, a 90 años de su fundación, al frente de los
   proyectos estratégicos del Plan México.'
-imagen: /img/notas/whatsapp-image-2026-11-24-at-2.01.13-pm.jpeg
+imagen: /img/notas/dr.-rolando-de-jesu-s-lo-pez-saldan-a.png
 imagen_alt: Dr. Rolando de Jesús López Saldaña
 autor: Redacción RD Centro
 borrador: false
